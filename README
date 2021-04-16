@@ -1,0 +1,14 @@
+conky-spacepanel
+
+Deploys a system monitor and a "space" panel with the positions of some
+astronomical bodies.
+
+Depends on:
+    Conky
+    aa (astronomical almanac)
+
+Installation:
+
+Put the config files in ~/.config/conky
+Put the get-* and spacepanel scripts in ~/.local/bin
+Put the .desktop file in ~/.config/autostart/

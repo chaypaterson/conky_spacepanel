@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# a script to get viewing coords of the sun
+
+year=$(date -u +%Y)
+month=$(date -u +%m)
+day=$(date -u +%d)
+hr=$(date -u +%H)
+min=$(date -u +%M)
+sec=$(date -u +%S)
+
+body="$1"
+
+aa << EOF | sed -n '/Topocentric: R.A./{
+ s/Topocentric: //;
+ s/R.A. //;
+ s/Dec. //;
+ s/-  /-/;
+ s/ \([0-9]\)\([a-z]\)/ 0\1\2/g;
+ s/\.[0-9]\{2,3\}//g;
+ s/   \+/ \/ /;
+ s/  \+$//g;
+ s/- \([0-9]\)/-\1/;
+ s/d /°/;
+ s/\([a-z]*["]*\) /\1/g;
+ s/\(\/\)\([0-9]\)/\1\+\2/g;
+ s/\// \/ /p}'
+$year
+$month
+$day
+$hr
+$min
+$sec
+1
+1
+$body
+EOF

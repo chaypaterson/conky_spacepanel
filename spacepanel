@@ -1,0 +1,26 @@
+#!/bin/bash
+
+kill_panels () {
+    killall -9 conky
+}
+
+deploy_panels () {
+    export DISPLAY=:0
+
+    # start space-themed conky panels
+    conky -d -q -c ~/.config/conky/astro.conf
+    conky -d -q -c ~/.config/conky/conky.conf
+}
+
+# initial state so we kill and restart conky properly:
+kill_panels
+LAST="blank"
+
+while true; do
+	case "`xscreensaver-command -time | egrep -o ' blanked|non-blanked|locked'`" in
+		" blanked")     [ $LAST != "blank" ] && kill_panels && LAST="blank" ;;
+		"non-blanked")  [ $LAST != "unblank" ] && deploy_panels && LAST="unblank" ;;
+		"locked")       [ $LAST != "lock" ] && kill_panels && LAST="lock" ;;
+	esac
+	sleep 3
+done

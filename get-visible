@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# a script to get viewing coords of the sun
+
+year=$(date -u +%Y)
+month=$(date -u +%m)
+day=$(date -u +%d)
+hr=$(date -u +%H)
+min=$(date -u +%M)
+sec=$(date -u +%S)
+
+body="$1"
+
+aa << EOF | sed -n '/Altitude/{s/.*Altitude -.*/Not visible/p;s/.*Altitude [0-9].*/Visible/p}'
+$year
+$month
+$day
+$hr
+$min
+$sec
+1
+1
+$body
+EOF
+
