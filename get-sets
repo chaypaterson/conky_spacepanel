@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# a script to get viewing coords of the sun
+# a script to get viewing coords of solar system bodies
 
-year=$(date -u +%Y)
-month=$(date -u +%m)
-day=$(date -u +%d)
-hr=$(date -u +%H)
-min=$(date -u +%M)
-sec=$(date -u +%S)
+year=$(TZ=UTC TZ=UTC date +%Y)
+month=$(TZ=UTC TZ=UTC date +%m)
+day=$(TZ=UTC TZ=UTC date +%d)
+hr=$(TZ=UTC TZ=UTC date +%H)
+min=$(TZ=UTC TZ=UTC date +%M)
+sec=$(TZ=UTC TZ=UTC date +%S)
 
 body="$1"
 
-aa << EOF | sed -n '/^sets/{s/.*\( [0-9]\{1,2\}h\)/\1/; s/  \+/ /g; s/\.[0-9]\{3\}//p}'
+aa << EOF | sed '/^sets/{s/.*\( [0-9]\{1,2\}h\)/\1/; s/  \+/ /g; s/\.[0-9]\{3\}//p}'
 $year
 $month
 $day

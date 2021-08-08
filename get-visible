@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# a script to get viewing coords of the sun
+# a script to get viewing coords of solar system bodies
 
-year=$(date -u +%Y)
-month=$(date -u +%m)
-day=$(date -u +%d)
-hr=$(date -u +%H)
-min=$(date -u +%M)
-sec=$(date -u +%S)
+year=$(TZ=UTC date +%Y)
+month=$(TZ=UTC date +%m)
+day=$(TZ=UTC date +%d)
+hr=$(TZ=UTC date +%H)
+min=$(TZ=UTC date +%M)
+sec=$(TZ=UTC date +%S)
 
 body="$1"
 
