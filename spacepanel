@@ -5,7 +5,7 @@ kill_panels () {
 }
 
 deploy_panels () {
-    export DISPLAY=:0
+    export DISPLAY=$DISPLAY
 
     # start space-themed conky panels
     conky -d -q -c ~/.config/conky/astro.conf
